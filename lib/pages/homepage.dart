@@ -36,9 +36,21 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.start,
                   children: const [
-                    Slideshow(),
-                    Slideshow(),
-                    Slideshow(),
+                    Slideshow(
+                      image: "w1.webp",
+                      price: '249',
+                      title: 'EKHOLM',
+                    ),
+                    Slideshow(
+                      image: "w2.jpg",
+                      price: '220',
+                      title: 'CELSO',
+                    ),
+                    Slideshow(
+                      image: "w3.jpg",
+                      price: '200',
+                      title: 'HISAKO',
+                    ),
                   ],
                 ),
               ),
@@ -64,12 +76,57 @@ class HomePage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.35,
                 child: ListView.separated(
                     itemBuilder: ((context, index) {
-                      return ListTile(
-                        title: Text('item $index'),
+                      return Card(
+                        elevation: 0,
+                        color: Color.fromARGB(255, 245, 244, 244),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(children: [
+                            Image.asset(
+                              "assets/images/uu$index.jpg",
+                              height: 100,
+                            ),
+                            const SizedBox(
+                              width: 18,
+                            ),
+                            Column(
+                              children: const [
+                                Text(
+                                  'ORMOUS',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  'White, size L',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color:
+                                          Color.fromARGB(255, 126, 125, 125)),
+                                ),
+                              ],
+                            ),
+                            Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "\$249",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            )
+                          ]),
+                        ),
                       );
+
+                      /*  ListTile(
+                        leading: SizedBox(
+                            height: 100,
+                            child: Image.asset("assets/images/uu$index.jpg")),
+                        title: Text('item $index'),
+                      ); */
                     }),
                     separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                     itemCount: 5),
               )
             ],
@@ -83,20 +140,27 @@ class HomePage extends StatelessWidget {
 class Slideshow extends StatelessWidget {
   const Slideshow({
     Key? key,
+    required this.image,
+    required this.title,
+    required this.price,
+    // String? image,
   }) : super(key: key);
+  final String image;
+  final String title;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(18.0),
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.7,
         height: MediaQuery.of(context).size.height * 0.4,
         child: Stack(
           fit: StackFit.expand,
           children: [
             Image.asset(
-              'assets/images/w1.webp',
+              'assets/images/$image',
               fit: BoxFit.fill,
             ),
             Positioned(
@@ -106,18 +170,18 @@ class Slideshow extends StatelessWidget {
               height: 55,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
-                    "EKHOLM",
-                    style: TextStyle(
+                    title,
+                    style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
                       color: Colors.white,
                     ),
                   ),
                   Text(
-                    "99",
-                    style: TextStyle(
+                    price,
+                    style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 18,
                       color: Colors.white,
