@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:watchshop/pages/watch_details.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,18 +38,18 @@ class HomePage extends StatelessWidget {
                   // mainAxisAlignment: MainAxisAlignment.start,
                   children: const [
                     Slideshow(
-                      image: "w1.webp",
-                      price: '249',
+                      image: "w5.jpg",
+                      price: '\$249',
                       title: 'EKHOLM',
                     ),
                     Slideshow(
                       image: "w2.jpg",
-                      price: '220',
+                      price: '\$220',
                       title: 'CELSO',
                     ),
                     Slideshow(
                       image: "w3.jpg",
-                      price: '200',
+                      price: '\$200',
                       title: 'HISAKO',
                     ),
                   ],
@@ -76,43 +77,52 @@ class HomePage extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.35,
                 child: ListView.separated(
                     itemBuilder: ((context, index) {
-                      return Card(
-                        elevation: 0,
-                        color: Color.fromARGB(255, 245, 244, 244),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(children: [
-                            Image.asset(
-                              "assets/images/uu$index.jpg",
-                              height: 100,
-                            ),
-                            const SizedBox(
-                              width: 18,
-                            ),
-                            Column(
-                              children: const [
-                                Text(
-                                  'ORMOUS',
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                                Text(
-                                  'White, size L',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      color:
-                                          Color.fromARGB(255, 126, 125, 125)),
-                                ),
-                              ],
-                            ),
-                            Spacer(),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "\$249",
-                                style: TextStyle(fontSize: 20),
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const WatchDetails(),
+                              ));
+                        },
+                        child: Card(
+                          elevation: 0,
+                          color: const Color.fromARGB(255, 245, 244, 244),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(children: [
+                              Image.asset(
+                                "assets/images/uu$index.jpg",
+                                height: 100,
                               ),
-                            )
-                          ]),
+                              const SizedBox(
+                                width: 18,
+                              ),
+                              Column(
+                                children: const [
+                                  Text(
+                                    'ORMOUS',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                  Text(
+                                    'White, size L',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        color:
+                                            Color.fromARGB(255, 126, 125, 125)),
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "\$249",
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              )
+                            ]),
+                          ),
                         ),
                       );
 

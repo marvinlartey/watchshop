@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watchshop/pages/watch_details.dart';
 
 import 'pages/homepage.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Watchshop',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.brown,
       ),
       home: const HomePage(),
     );
